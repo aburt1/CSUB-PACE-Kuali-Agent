@@ -55,6 +55,7 @@ Install the CSUB Kuali Build Agent skill and configure Kuali Connector on this c
 
 Inputs:
 - Skill repository URL or local path: `https://github.com/aburt1/CSUB-PACE-Kuali-Agent`
+- Kuali tenant URL: `<your Kuali tenant URL>`
 - Preferred Kuali profile name: `<sandbox, default, or institution profile name>`
 
 Rules:
@@ -62,6 +63,7 @@ Rules:
 - Assume this is either macOS or Windows, and either Codex or Claude Code.
 - Detect the operating system and whether you are running in Codex or Claude Code. If you cannot tell, ask one short question.
 - Do not ask me to paste API keys into chat. Use `kuali setup` or another secure Connector command so credentials are handled by the local keychain/credential store.
+- If I do not have a Kuali API key yet, stop and tell me I need to get one from Kuali before Connector setup can finish.
 - Do not mutate any Kuali data during setup.
 - If configuring production, prefer read-only MCP tools unless I explicitly ask for write tools.
 - Stop only for secrets, OS permissions, missing repo URL/path, or an unsupported environment.
@@ -72,7 +74,7 @@ Do this:
    - macOS: `curl -fsSL https://connector.kuali.co/install.sh | sh`
    - macOS with Homebrew: `brew update && brew install kualico/tap/kuali`
    - Windows PowerShell: `irm https://connector.kuali.co/install.ps1 | iex`
-3. Run `kuali setup` if no usable profile exists, then run `kuali doctor`.
+3. Run `kuali setup` if no usable profile exists. Have me enter the Kuali tenant URL and API key locally when prompted, then run `kuali doctor`.
 4. Configure MCP for my target client:
    - Codex: `kuali mcp setup --client codex`
    - Claude Code: `kuali mcp setup --client claude-code`
