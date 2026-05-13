@@ -55,8 +55,10 @@ Install the CSUB Kuali Build Agent skill and configure Kuali Connector on this c
 
 Inputs:
 - Skill repository URL or local path: `https://github.com/aburt1/CSUB-PACE-Kuali-Agent`
-- Kuali tenant URL: `<your Kuali tenant URL>`
-- Preferred Kuali profile name: `<sandbox, default, or institution profile name>`
+- Kuali tenant URL: `<choose production or sandbox below>`
+  - Production: `https://csub.kualibuild.com`
+  - Sandbox: `https://csub-sbx.kualibuild.com`
+- Preferred Kuali profile name: `<production/default or sandbox>`
 
 Rules:
 - Actually perform the installation and verification steps. Do not only give me instructions.

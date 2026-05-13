@@ -18,6 +18,11 @@ kuali mcp verify --client claude-code
 
 Use the client-specific setup and verify commands that match the user's assistant. Do not collect API keys in chat; let `kuali setup` prompt locally and store credentials in the OS credential store.
 
+CSUB tenant URLs:
+
+- Production: `https://csub.kualibuild.com`
+- Sandbox: `https://csub-sbx.kualibuild.com`
+
 ## MCP Capability Map
 
 Observed Kuali MCP tool families:
