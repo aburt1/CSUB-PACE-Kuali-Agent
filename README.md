@@ -98,20 +98,6 @@ kuali --profile sandbox apps list --search "App Name" --all --output json --quie
 
 Do not assume a connected MCP server is pointed at sandbox. Do not use `smoke` as a read-only probe; it may create, publish, submit, and clean up temporary artifacts.
 
-## Publishing Checklist
-
-Before publishing this repository:
-
-- Keep only the skill folder and intended documentation.
-- Remove raw Kuali exports, workflow payloads, document data, local scratch files, and tenant-specific probes.
-- Confirm no API keys, user IDs, emails, local file paths, or personal names appear in the published files.
-- Keep examples generic unless the owning office explicitly approves public examples.
-- Run a final scan:
-
-```bash
-rg -n -i 'api[_-]?key|bearer|token|secret|home path|email address|school id|display name|prod app|sandbox app|workflow payload|document id|user id'
-```
-
 ## Suggested First Prompt
 
 ```text
