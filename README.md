@@ -30,6 +30,7 @@ The prompt below installs the skill and configures Kuali Connector for you. Befo
 CSUB tenant URLs:
 
 - Production: `https://csub.kualibuild.com`
+- Staging: `https://csub-stg.kualibuild.com`
 - Sandbox: `https://csub-sbx.kualibuild.com`
 
 Do not paste the API key into chat. The installer prompt tells the agent to use `kuali setup` so you can enter the key locally and securely. This skill does not include credentials and does not grant Kuali access.
@@ -43,10 +44,11 @@ Install the CSUB Kuali Build Agent skill and configure Kuali Connector on this c
 
 Inputs:
 - Skill repository URL or local path: https://github.com/aburt1/CSUB-PACE-Kuali-Agent
-- Kuali tenant URL: <choose production or sandbox below>
+- Kuali tenant URL: <choose production, staging, or sandbox below>
   - Production: https://csub.kualibuild.com
+  - Staging: https://csub-stg.kualibuild.com
   - Sandbox: https://csub-sbx.kualibuild.com
-- Preferred Kuali profile name: <production/default or sandbox>
+- Preferred Kuali profile name: <production/default, staging, or sandbox>
 
 Rules:
 - Actually perform the installation and verification steps. Do not only give me instructions.

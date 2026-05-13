@@ -21,6 +21,7 @@ Use the client-specific setup and verify commands that match the user's assistan
 CSUB tenant URLs:
 
 - Production: `https://csub.kualibuild.com`
+- Staging: `https://csub-stg.kualibuild.com`
 - Sandbox: `https://csub-sbx.kualibuild.com`
 
 ## MCP Capability Map
