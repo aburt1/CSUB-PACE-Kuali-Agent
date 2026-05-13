@@ -11,7 +11,7 @@ This library is adapted from the Kuali Connector prompt-library pattern: name th
 Every strong CSUB Kuali prompt should include:
 
 - Environment: prod/default, sandbox, or read-only.
-- Target: app name, app ID, product, form, workflow, group, document, CSV, or source page.
+- Target: app name, product, form, workflow, group, document, CSV, or source page.
 - Intent: inspect, design, compare, copy, update, publish, import, submit, report, or delete.
 - Mutation boundary: read-only first, preview changes, wait for explicit go before major or destructive changes.
 - Scope preservation: what must stay intact.
@@ -19,12 +19,15 @@ Every strong CSUB Kuali prompt should include:
 - Output format: blueprint, diff, adaptation map, approval matrix, email set, testing checklist, report, or command.
 - Validation: read the app/workflow/permissions/documents back after changes.
 
+App-name rule: users should be able to provide the app name. The agent should resolve the underlying Kuali app record with read-only search/list/get tools, show a short candidate list only if the name is ambiguous, and include the resolved app name plus technical identifier in any mutation preview.
+
 Use this skeleton when creating a new prompt:
 
 ```markdown
-Using the [kuali-sandbox | kuali prod/default | read-only] Kuali tools, [inspect/design/update/copy/import/report] [target].
+Using the [kuali-sandbox | kuali prod/default | read-only] Kuali tools, [inspect/design/update/copy/import/report] [target app name or process].
 
 Context:
+- App name:
 - Business process:
 - Submitter:
 - Reviewers/approvers:
@@ -33,7 +36,8 @@ Context:
 - CSUB.edu source, if relevant:
 
 Before making changes:
-- Inspect the current app/configuration.
+- Resolve the exact app from the name. If several apps match, show me the candidates and ask which one to use.
+- Inspect the current app/configuration after resolving it.
 - Show me the proposed changes as [blueprint/diff/adaptation map].
 - Call out assumptions, risks, and anything that needs web UI/manual follow-up.
 - Wait for "go" before mutating anything.
@@ -96,7 +100,7 @@ Likely tools/actions: local shell checks, Kuali Connector install/setup commands
 ```markdown
 Using the kuali-sandbox tools, help me design or improve the Kuali Build app named `<app name>`.
 
-Start read-only. Inspect the current form, workflow, permissions, integrations, and existing documents only if needed. Search CSUB.edu for official public-facing context, office ownership, policy language, contact information, or links that should influence form language or emails.
+Start read-only. Resolve the app from its name, then inspect the current form, workflow, permissions, integrations, and existing documents only if needed. Search CSUB.edu for official public-facing context, office ownership, policy language, contact information, or links that should influence form language or emails.
 
 Before making any changes, show me:
 - App summary and business process summary
@@ -117,9 +121,9 @@ Likely tools/actions: app search/get, form outline/schema/template, workflow rea
 ## Use A Reference App Without Literal Copying
 
 ```markdown
-Using the kuali-sandbox tools, improve `<target app>` using `<reference app>` as a design reference, not a literal copy.
+Using the kuali-sandbox tools, improve the app named `<target app name>` using `<reference app name>` as a design reference, not a literal copy.
 
-Inspect both apps first. Classify the reference intent as design reference, pattern reference, or functional copy. Borrow only the structure, clarity, workflow patterns, email discipline, and permission ideas that fit the target process.
+Resolve both apps by name, then inspect them first. Classify the reference intent as design reference, pattern reference, or functional copy. Borrow only the structure, clarity, workflow patterns, email discipline, and permission ideas that fit the target process.
 
 Do not copy reference-specific fields, signatures, policy text, roles, assignees, integrations, permissions, or email promises unless the target process independently requires them and I confirm.
 
@@ -142,11 +146,11 @@ Likely tools/actions: app search/get for both apps, form templates, workflow rea
 ## Copy Prod App To Sandbox Safely
 
 ```markdown
-Copy the prod Kuali Build app `<prod app name or id>` into kuali-sandbox for experimentation.
+Copy the prod Kuali Build app named `<prod app name>` into kuali-sandbox for experimentation.
 
 Before copying:
 - Verify the prod/default and sandbox profiles.
-- Resolve the exact prod app and show app ID/name.
+- Resolve the exact prod app from the name and show app name plus technical identifier.
 - Explain what will and will not copy automatically.
 - Confirm whether workflow, permissions, integrations, and groups should be copied, adapted, or left manual.
 
@@ -169,7 +173,7 @@ Using only the kuali-sandbox profile, probe what Kuali Build operations are avai
 Start read-only:
 - Verify the sandbox tenant/profile.
 - List a small sample of apps.
-- Pick the target sandbox app `<app name or id>` and inspect app details, form outline, form schema, permissions, document count, pending workflow actions, groups, integrations, categories, and available read-only export options.
+- Pick the target sandbox app named `<app name>` and inspect app details, form outline, form schema, permissions, document count, pending workflow actions, groups, integrations, categories, and available read-only export options.
 - Use GraphQL only for read-only primary workflow inspection if the normal workflow command does not expose it.
 
 Safe previews:
@@ -189,9 +193,9 @@ Likely tools/actions: explicit CLI `--profile sandbox`, app/form/permission/docu
 ## Workflow Repair Or Audit
 
 ```markdown
-Using the kuali-sandbox tools, audit the workflow for `<app name or id>`.
+Using the kuali-sandbox tools, audit the workflow for the app named `<app name>`.
 
-Start read-only. Walk through every workflow step and show:
+Start read-only. Resolve the app from its name, then walk through every workflow step and show:
 - Step name and type
 - Trigger condition
 - Assignee role/group/person
@@ -212,9 +216,9 @@ Likely tools/actions: apps get, workflow read, documents/workflow executions if 
 ## Email Template Improvement Pack
 
 ```markdown
-For the Kuali app `<app name or id>`, draft a complete CSUB email template set.
+For the Kuali app named `<app name>`, draft a complete CSUB email template set.
 
-Inspect the app/workflow first if available. Search CSUB.edu for the owning office name, contact block, and any public instructions or links that belong in the email.
+Resolve the app from its name and inspect the app/workflow first if available. Search CSUB.edu for the owning office name, contact block, and any public instructions or links that belong in the email.
 
 Create templates for the relevant events:
 - Submission confirmation
@@ -243,9 +247,9 @@ Likely tools/actions: app/workflow read, CSUB.edu web search, then notification/
 ## Permission Audit
 
 ```markdown
-Using the Kuali tools, audit permissions for `<app name or id>`.
+Using the Kuali tools, audit permissions for the app named `<app name>`.
 
-Start read-only. Show who can submit, view, edit drafts, edit after submission, approve/complete tasks, administer, export/report, and manage integrations if visible.
+Start read-only. Resolve the app from its name, then show who can submit, view, edit drafts, edit after submission, approve/complete tasks, administer, export/report, and manage integrations if visible.
 
 Compare the current permissions to least-privilege expectations for this process. Identify broad access, missing reviewer access, sandbox/prod identity mismatches, and permissions copied from a reference app that do not fit.
 
@@ -257,10 +261,10 @@ Likely tools/actions: apps get, permissions list, groups/users lookup where need
 ## CSV Import With Mapping Review
 
 ```markdown
-Using the kuali-sandbox tools, prepare to import `<csv file>` into `<app name or id>`.
+Using the kuali-sandbox tools, prepare to import `<csv file>` into the app named `<app name>`.
 
 Before importing:
-- Resolve the target app.
+- Resolve the target app from its name.
 - Read the form fields and identify likely CSV-to-field mappings.
 - Show the mapping and any ambiguous columns.
 - Recommend whether to dry-run first.
@@ -276,9 +280,9 @@ Likely tools/actions: apps list, forms list/schema, import CSV dry-run/import, d
 ## CSUB.edu-Grounded Form Language
 
 ```markdown
-Improve the user-facing language for `<app name or id>` using official CSUB.edu sources.
+Improve the user-facing language for the app named `<app name>` using official CSUB.edu sources.
 
-Inspect the current form first. Search CSUB.edu for the owning office, service page, catalog/policy page, or public process instructions.
+Resolve the app from its name and inspect the current form first. Search CSUB.edu for the owning office, service page, catalog/policy page, or public process instructions.
 
 Then propose:
 - Revised app description
@@ -303,6 +307,7 @@ Rewrite this Kuali request into a safer, more complete CSUB Kuali prompt:
 
 Make the improved prompt include:
 - Environment/profile
+- App name, with the Kuali app record resolved by the agent
 - Read-only inspection first
 - Exact target identification
 - Reference apps or CSUB.edu sources

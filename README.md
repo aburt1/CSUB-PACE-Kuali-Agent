@@ -17,6 +17,8 @@ csub-kuali-build-agent/
 
 `SKILL.md` is the small router and safety kernel. Detailed guidance lives in `references/`, reusable output shapes live in `templates/`, and deterministic helpers live in `scripts/`.
 
+For reusable copy-paste prompts, see the [CSUB Kuali Prompt Library](references/prompt-library.md).
+
 ## Requirements
 
 - A tool environment that supports local skills.
