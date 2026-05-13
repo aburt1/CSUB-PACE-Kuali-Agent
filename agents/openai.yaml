@@ -1,0 +1,4 @@
+interface:
+  display_name: "CSUB Kuali Build Agent"
+  short_description: "Design and adapt CSUB Kuali Build apps"
+  default_prompt: "Use $csub-kuali-build-agent to design or improve a CSUB Kuali Build app with forms, workflow, emails, permissions, and testing."
