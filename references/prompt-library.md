@@ -50,7 +50,7 @@ After changes:
 Install the CSUB Kuali Build Agent skill and configure Kuali Connector on this computer.
 
 Inputs:
-- Skill repository URL or local path: `<paste the repo URL or local path here>`
+- Skill repository URL or local path: `https://github.com/aburt1/CSUB-PACE-Kuali-Agent`
 - Preferred Kuali profile name: `<sandbox, default, or institution profile name>`
 
 Rules:
